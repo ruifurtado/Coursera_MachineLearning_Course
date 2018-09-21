@@ -16,17 +16,18 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
-
-
-
-
-
-
+    grad1 = theta(1)-alpha*(1/m)*sum((X*theta-y).*X(:,1));
+    grad2 = theta(2)-alpha*(1/m)*sum((X*theta-y).*X(:,2));
+    theta = [grad1;grad2];
+    
+    printf('Gradient 1 is: %f | gradient 2 is: %f \n', theta(1),theta(2));
 
     % ============================================================
 
     % Save the cost J in every iteration    
-    J_history(iter) = computeCost(X, y, theta);
+    cost_func = computeCost(X, y, theta);
+    printf('Cost function after gradient updtaes is: %f \n',cost_func);
+    J_history(iter) = cost_func;
 
 end
 

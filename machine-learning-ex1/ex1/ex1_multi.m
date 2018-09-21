@@ -50,6 +50,7 @@ pause;
 fprintf('Normalizing Features ...\n');
 
 [X mu sigma] = featureNormalize(X);
+%display(X)
 
 % Add intercept term to X
 X = [ones(m, 1) X];
@@ -105,6 +106,10 @@ fprintf('\n');
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 price = 0; % You should change this
+prediction = [1 1650 3];
+prediction(1,2) = (prediction(1,2) - mu(1,1))/(sigma(1,1));
+prediction(1,3) = (prediction(1,3) - mu(1,2))/(sigma(1,2));
+price = prediction * theta;
 
 
 % ============================================================
@@ -150,7 +155,7 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
-
+price = prediction * theta;
 
 % ============================================================
 

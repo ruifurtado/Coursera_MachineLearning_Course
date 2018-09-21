@@ -17,21 +17,21 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    %OPTIMIZED SOLUTION
+    theta = theta - ((alpha/m)*(((X*theta)-y)'*X)');
 
-
-
-
-
-
-
-
-
-
+%    for i=1:size(X,2)
+%        grad = theta(i)-alpha*(1/m)*sum((X*theta-y).*X(:,i));
+%        theta(i) = grad;
+%    end
     % ============================================================
+    printf('Iteration nr %d. Gradients are: %f, %f, %f\n',iter,theta);
 
     % Save the cost J in every iteration    
-    J_history(iter) = computeCostMulti(X, y, theta);
 
-end
+    cost_func = computeCost(X, y, theta);
+    printf('Cost function after gradient updates is: %f \n',cost_func);
+    
+    J_history(iter) = cost_func;
 
 end
